@@ -36,6 +36,7 @@ public class EllipticalMotion : MonoBehaviour
     private float disableTimer=10f;
 
     public TextMeshProUGUI runtimeText; // Reference to the TextMeshPro component.
+    public TimerDisplay timerDisplay;
 
 
     void Start()
@@ -46,6 +47,7 @@ public class EllipticalMotion : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         runtimeText = GameObject.Find("RuntimeText").GetComponent<TextMeshProUGUI>();
 
+        timerDisplay = FindObjectOfType<TimerDisplay>();
 
     }
 
@@ -108,6 +110,11 @@ public class EllipticalMotion : MonoBehaviour
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
+
+            if (timerDisplay != null)
+            {
+                timerDisplay.StartTimerDisplay();
+            }
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
@@ -120,6 +127,10 @@ public class EllipticalMotion : MonoBehaviour
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
+            if (timerDisplay != null)
+            {
+                timerDisplay.StartTimerDisplay();
+            }
         }
     }
 
