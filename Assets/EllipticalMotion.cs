@@ -95,6 +95,8 @@ public class EllipticalMotion : MonoBehaviour
         if (!isEnabled)
         {
             enabled = false; // Disable the entire script when isEnabled is false.
+            timerDisplay.StartTimerDisplay();
+
             return; // Exit the Update method.
         }
 
@@ -111,10 +113,7 @@ public class EllipticalMotion : MonoBehaviour
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
 
-            if (timerDisplay != null)
-            {
-                timerDisplay.StartTimerDisplay();
-            }
+            
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
@@ -127,10 +126,6 @@ public class EllipticalMotion : MonoBehaviour
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
-            if (timerDisplay != null)
-            {
-                timerDisplay.StartTimerDisplay();
-            }
         }
     }
 

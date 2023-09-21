@@ -6,20 +6,24 @@ using TMPro;
 
 public class TimerDisplay : MonoBehaviour
 {
-    EllipticalMotion ellipticalMotion;
     private float timer = 0f;
+    private bool timerStarted = false; // Track if the timer has started.
 
     void Update()
     {
-               
-            // Update the timer
+        if (timerStarted)
+        {
+            Debug.Log("In update");
+
             timer += Time.deltaTime;
-        
+        }
     }
     public void StartTimerDisplay()
     {
+        Debug.Log("In STartTimerDisplay");
+
         timer = 0f; // Reset the timer.
-        enabled = true; // Enable the TimerDisplay script.
+        timerStarted = true; // Set to true to start the timer.
     }
     void OnGUI()
     {
