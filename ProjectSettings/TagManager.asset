@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Attractable
+  - SpaceStation
   layers:
   - Default
   - TransparentFX
