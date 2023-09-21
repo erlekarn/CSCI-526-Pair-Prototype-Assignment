@@ -37,7 +37,7 @@ public class EllipticalMotion : MonoBehaviour
 
     public TextMeshProUGUI runtimeText; // Reference to the TextMeshPro component.
     public TimerDisplay timerDisplay;
-
+    public float scriptRuntimeDifference;
 
     void Start()
     {
@@ -95,7 +95,7 @@ public class EllipticalMotion : MonoBehaviour
         if (!isEnabled)
         {
             enabled = false; // Disable the entire script when isEnabled is false.
-            timerDisplay.StartTimerDisplay();
+            timerDisplay.StartTimerDisplay(scriptRuntimeDifference);
 
             return; // Exit the Update method.
         }
@@ -108,7 +108,7 @@ public class EllipticalMotion : MonoBehaviour
             isEnabled = false; // Disable the script.
             rb2D.velocity = Vector2.zero; // Stop the object's movement.
             scriptEndTime = Time.time;
-            float scriptRuntimeDifference = scriptEndTime - scriptStartTime;
+            scriptRuntimeDifference = scriptEndTime - scriptStartTime;
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
@@ -122,7 +122,7 @@ public class EllipticalMotion : MonoBehaviour
             isEnabled = false; // Disable the script.
             rb2D.velocity = Vector2.zero; // Stop the object's movement.
             scriptEndTime = Time.time;
-            float scriptRuntimeDifference = scriptEndTime - scriptStartTime;
+            scriptRuntimeDifference = scriptEndTime - scriptStartTime;
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
