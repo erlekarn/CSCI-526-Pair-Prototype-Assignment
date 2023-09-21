@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EllipticalMotion : MonoBehaviour
 {
@@ -28,14 +29,24 @@ public class EllipticalMotion : MonoBehaviour
     private bool startEllipticalMotion = false; // Flag to track when to start elliptical motion.
     private float peakHeightY; // Y-coordinate of the peak height during jump.
 
-    private bool isEnabled = true; // Flag to track if the script is enabled.
-    private float disableTimer = 10f;
+    public bool isEnabled = true; // Flag to track if the script is enabled.
+
+    public float scriptStartTime;
+    public float scriptEndTime;
+    private float disableTimer=10f;
+
+    public TextMeshProUGUI runtimeText; // Reference to the TextMeshPro component.
+
+
     void Start()
     {
         semiMajorAxis = initialSemiMajorAxis;
         semiMinorAxis = initialSemiMinorAxis;
         radius = initialRadius;
         rb2D = GetComponent<Rigidbody2D>();
+        runtimeText = GameObject.Find("RuntimeText").GetComponent<TextMeshProUGUI>();
+
+
     }
 
     void Update()
@@ -48,6 +59,11 @@ public class EllipticalMotion : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Jump();
+                    scriptStartTime = Time.time; // Set the script start time.
+                    disableTimer += scriptStartTime ;
+
+                    Debug.Log("Script Start Time: " + scriptStartTime.ToString("F2") + " seconds");
+                    
                 }
             }
             else if (isJumping)
@@ -71,20 +87,39 @@ public class EllipticalMotion : MonoBehaviour
                     rb2D.isKinematic = false; // Set Rigidbody2D to non-kinematic to enable physics.
                 }
             }
+        
+        }
+
+        if (!isEnabled)
+        {
+            enabled = false; // Disable the entire script when isEnabled is false.
+            return; // Exit the Update method.
         }
 
 
         disableTimer -= Time.deltaTime;
         if (disableTimer <= 0f)
         {
+            
             isEnabled = false; // Disable the script.
             rb2D.velocity = Vector2.zero; // Stop the object's movement.
+            scriptEndTime = Time.time;
+            float scriptRuntimeDifference = scriptEndTime - scriptStartTime;
+            runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
+            Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
+            Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
         {
+            
             isEnabled = false; // Disable the script.
             rb2D.velocity = Vector2.zero; // Stop the object's movement.
+            scriptEndTime = Time.time;
+            float scriptRuntimeDifference = scriptEndTime - scriptStartTime;
+            runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
+            Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
+            Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
         }
     }
 
