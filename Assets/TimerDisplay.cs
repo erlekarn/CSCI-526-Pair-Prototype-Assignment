@@ -50,7 +50,11 @@ public class TimerDisplay : MonoBehaviour
         GUI.Label(new Rect(10, 10, 100, 20), string.Format("{0:00}:{1:00}", minutes, seconds));
         if (gameEnd)
         {
-            GUI.Label(new Rect(100, 105, 100, 20), "GAME OVER");
+            GUIStyle gameOverStyle = new GUIStyle();
+            gameOverStyle.normal.textColor = Color.red;
+            gameOverStyle.fontSize = 24; // Set the font size.
+            gameOverStyle.fontStyle = FontStyle.Bold; // Make the text bold.
+            GUI.Label(new Rect(150, 105, 1000, 200), "YOU RAN OUT OF FUEL. YOU LOST. GAME OVER", gameOverStyle);
 
         }
     }
