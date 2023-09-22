@@ -109,6 +109,7 @@ public class EllipticalMotion : MonoBehaviour
             rb2D.velocity = Vector2.zero; // Stop the object's movement.
             scriptEndTime = Time.time;
             scriptRuntimeDifference = scriptEndTime - scriptStartTime;
+            scriptRuntimeDifference = scriptRuntimeDifference +5;
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
@@ -123,6 +124,7 @@ public class EllipticalMotion : MonoBehaviour
             rb2D.velocity = Vector2.zero; // Stop the object's movement.
             scriptEndTime = Time.time;
             scriptRuntimeDifference = scriptEndTime - scriptStartTime;
+            scriptRuntimeDifference = scriptRuntimeDifference + 5;
             runtimeText.text = "Fuel Collected: " + scriptRuntimeDifference.ToString("F2") + " seconds";
             Debug.Log("Script Endtime: " + scriptEndTime.ToString("F2") + " seconds");
             Debug.Log("Script Runtime Difference: " + scriptRuntimeDifference.ToString("F2") + " seconds");
